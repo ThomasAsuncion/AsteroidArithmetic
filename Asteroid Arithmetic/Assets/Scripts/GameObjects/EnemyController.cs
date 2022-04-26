@@ -12,6 +12,16 @@ public class EnemyController : MonoBehaviour
     /// </summary>
     public int number;
 
+    /// <summary>
+    /// Speed of Asteroid flying across screen
+    /// </summary>
+    public float speed;
+
+    /// <summary>
+    /// Rigidbody 2d for game object - used for physics
+    /// </summary>
+    public Rigidbody2D rigidbody2d;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,23 +31,6 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        SpawnAsteroid();
-    }
 
-    /// <summary>
-    /// Spawn asteroids into the world
-    /// </summary>
-    private void SpawnAsteroid()
-    {
-        StartCoroutine(SpawnAsteroidOnTime());
-    }
-
-    /// <summary>
-    /// Resets touch position after a touch
-    /// </summary>
-    IEnumerator SpawnAsteroidOnTime()
-    {
-        yield return new WaitForSeconds(2f);
-        transform.position = new Vector3(-4f, 3.1f, 0f);
     }
 }
