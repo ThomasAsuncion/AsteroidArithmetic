@@ -17,7 +17,7 @@ public class InputManager : MonoBehaviourSingleton<InputManager>
     public delegate void StartTouchEvent(Vector2 position, float time);
 
     /// <summary>
-    /// Whats called from the script
+    /// Whats called from the other script
     /// </summary>
     public event StartTouchEvent OnStartTouch;
 
@@ -29,7 +29,7 @@ public class InputManager : MonoBehaviourSingleton<InputManager>
     public delegate void EndTouchEvent(Vector2 position, float time);
 
     /// <summary>
-    /// Whats called from the script
+    /// Whats called from the other script
     /// </summary>
     public event EndTouchEvent OnEndTouch;
 
@@ -82,9 +82,6 @@ public class InputManager : MonoBehaviourSingleton<InputManager>
         // Get touch position in screen cords 
         Vector2 touchPosition = touchControls.Touch.TouchPosition.ReadValue<Vector2>();
 
-        // Prints out where we touch in screen cordinates
-        Debug.Log($"Touch started {touchPosition}");
-
         if (OnStartTouch is not null)
         {
             OnStartTouch(touchPosition, (float)context.startTime);
@@ -99,9 +96,6 @@ public class InputManager : MonoBehaviourSingleton<InputManager>
     {
         // Get touch position in screen cords 
         Vector2 touchPosition = touchControls.Touch.TouchPosition.ReadValue<Vector2>();
-
-        // Prints out where we touch in screen cordinates
-        Debug.Log($"Touch ended {touchControls.Touch.TouchPosition.ReadValue<Vector2>()}");
 
         if (OnEndTouch is not null)
         {
