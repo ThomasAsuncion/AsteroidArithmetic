@@ -7,6 +7,12 @@ using UnityEngine;
 /// </summary>
 public class InvokeTouch : MonoBehaviour
 {
+
+    /// <summary>
+    /// Time it takes for the touch to go back to start pos
+    /// </summary>
+    public float resetTouchTime;
+
     /// <summary>
     /// Input manager
     /// </summary>
@@ -71,7 +77,7 @@ public class InvokeTouch : MonoBehaviour
     /// </summary>
     IEnumerator ResetTouchPosition()
     {
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(resetTouchTime);
         transform.position = new Vector3(0, -4, 0);
     }
 
