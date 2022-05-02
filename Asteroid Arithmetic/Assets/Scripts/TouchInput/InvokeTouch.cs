@@ -95,6 +95,7 @@ public class InvokeTouch : MonoBehaviour
             int asteroidNumber = collision.gameObject.GetComponent<EnemyController>().number;
 
             Debug.Log($"Asteroid had the number: {asteroidNumber} attached to it.");
+            Debug.Log($"The soloution number is: {SolutionNumberInstance.solutionNumber}");
 
             Destroy(collision.gameObject);
 
@@ -117,6 +118,7 @@ public class InvokeTouch : MonoBehaviour
         {
             Debug.Log("MATCH WAS MADE!");
             SolutionNumberInstance.solutionNumber = Random.Range(0, 20);
+            Debug.Log($"The NEW soloution number is: {soloutionNumber}");
         }
     }
 }

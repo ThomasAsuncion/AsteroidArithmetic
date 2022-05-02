@@ -61,8 +61,23 @@ public class EnemyController : MonoBehaviour
         // Randomly assign sprite to it when it spawns in game
         GetComponent<SpriteRenderer>().sprite = spriteArray[Random.Range(0, spriteArray.Length)];
 
-
-        number = Random.Range(0, 20);
+        
+        // Set number based on how many Asteroids are present to reduce waiting time
+        if (GameObject.FindGameObjectsWithTag("Asteroid").Length < 4)
+        {
+            // Generate number within range of solution number +/- 3
+            number = Random.Range(SolutionNumberInstance.solutionNumber - 3, SolutionNumberInstance.solutionNumber + 3);
+        }
+        else if (GameObject.FindGameObjectsWithTag("Asteroid").Length >= 6)
+        {
+            // Generate number within range of solution number +/- 2
+            number = Random.Range(SolutionNumberInstance.solutionNumber - 2, SolutionNumberInstance.solutionNumber + 2);
+        }
+        else if (GameObject.FindGameObjectsWithTag("Asteroid").Length >= 8)
+        {
+            // Generate number within range of solution number +/- 1
+            number = Random.Range(SolutionNumberInstance.solutionNumber - 1, SolutionNumberInstance.solutionNumber + 1);
+        }
 
         // Setup screen bounds for game
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
