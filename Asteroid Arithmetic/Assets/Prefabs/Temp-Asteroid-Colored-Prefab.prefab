@@ -117,6 +117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   number: 0
   speed: 2
+  rotationsPerMinute: 25
   spriteArray:
   - {fileID: 21300000, guid: ec5a2b5914ea18b47bd3704d791a52e2, type: 3}
   - {fileID: 21300000, guid: 81a92feeca0391549aa969c6d61bcd7a, type: 3}

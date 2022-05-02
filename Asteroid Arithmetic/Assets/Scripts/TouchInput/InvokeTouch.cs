@@ -17,7 +17,7 @@ public class InvokeTouch : MonoBehaviour
     /// Input manager
     /// </summary>
     private InputManager inputManager;
-    
+
     /// <summary>
     /// Main camera
     /// </summary>
@@ -29,7 +29,7 @@ public class InvokeTouch : MonoBehaviour
     private void Awake()
     {
         inputManager = InputManager.Instance;
-        
+
         // Finds the camera every time
         cameraMain = Camera.main;
     }
@@ -97,6 +97,26 @@ public class InvokeTouch : MonoBehaviour
             Debug.Log($"Asteroid had the number: {asteroidNumber} attached to it.");
 
             Destroy(collision.gameObject);
+
+            CheckSolutionOnAsteroidDestroy(asteroidNumber);
+
+        }
+    }
+
+    /// <summary>
+    ///  Checks to see if the Asteroid clicked matches with the soloution
+    /// </summary>
+    /// <param name="asteroidNumber">Number assigned to destroyed asteroid</param>
+    private void CheckSolutionOnAsteroidDestroy(int asteroidNumber)
+    {
+        // Displays and randomly assigns soloution number after destroying object
+        int soloutionNumber = SolutionNumberInstance.solutionNumber;
+        Debug.Log($"The soloution number is: {soloutionNumber}");
+
+        if (soloutionNumber.Equals(asteroidNumber))
+        {
+            Debug.Log("MATCH WAS MADE!");
+            SolutionNumberInstance.solutionNumber = Random.Range(0, 20);
         }
     }
 }

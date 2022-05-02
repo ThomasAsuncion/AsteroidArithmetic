@@ -18,9 +18,19 @@ public class EnemyController : MonoBehaviour
     public float speed;
 
     /// <summary>
+    /// Speed of which the object is rotating around the z-axis
+    /// </summary>
+    public float rotationsPerMinute = 25;
+
+    /// <summary>
+    /// Position in which the asteroid will start rotating
+    /// </summary>
+    private float positionZToRotate = 0f;
+
+    /// <summary>
     /// Rigidbody reference for moving asteroids
     /// </summary>
-    private Rigidbody2D rigidbody2D;
+    private new Rigidbody2D rigidbody2D;
 
     /// <summary>
     /// Screen bounds for scene based on camera location
@@ -47,11 +57,27 @@ public class EnemyController : MonoBehaviour
 
         // Setup screen bounds for game
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
+
+        // Sets the intial position to begin rotation
+        positionZToRotate = Random.Range(-2f, 2f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        transform.Rotate(0, 0,  positionZToRotate * rotationsPerMinute * Time.deltaTime);
+
+        DestroyObjectOffScreen();
+    }
+
+    /// <summary>
+    /// Destroys the object off the screen
+    /// </summary>
+    private void DestroyObjectOffScreen()
+    {
+        if (gameObject.transform.position.x > 10)
+        {
+            Destroy(gameObject);
+        }
     }
 }
