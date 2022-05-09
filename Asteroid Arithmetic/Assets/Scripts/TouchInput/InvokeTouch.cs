@@ -117,7 +117,9 @@ public class InvokeTouch : MonoBehaviour
         if (soloutionNumber.Equals(asteroidNumber))
         {
             Debug.Log("MATCH WAS MADE!");
-            SolutionNumberInstance.solutionNumber = Random.Range(0, 20);
+            SolutionNumberInstance.numberA = Random.Range(0, 20);
+            SolutionNumberInstance.numberB = Random.Range(0, 20);
+            SolutionNumberInstance.solutionNumber = SolutionNumberInstance.numberA + SolutionNumberInstance.numberB;
             Debug.Log($"The NEW soloution number is: {soloutionNumber}");
         }
     }

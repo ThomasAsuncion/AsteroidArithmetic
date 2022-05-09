@@ -91,6 +91,7 @@ public class EnemyController : MonoBehaviour
     {
         displayNumber.text = number.ToString();
 
+        // Rotate asteroid on the z-axis by RPM property
         transform.Rotate(0, 0,  positionZToRotate * rotationsPerMinute * Time.deltaTime);
 
         DestroyObjectOffScreen();
