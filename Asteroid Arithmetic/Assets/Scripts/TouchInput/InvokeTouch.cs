@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Invoke touch class
@@ -22,6 +23,11 @@ public class InvokeTouch : MonoBehaviour
     /// Main camera
     /// </summary>
     private Camera cameraMain;
+
+    /// <summary>
+    /// Total player lives
+    /// </summary>
+    public int playerLives = 3;
 
     /// <summary>
     /// Called when the script instance is loaded
@@ -119,8 +125,54 @@ public class InvokeTouch : MonoBehaviour
             Debug.Log("MATCH WAS MADE!");
             SolutionNumberInstance.numberA = Random.Range(0, 20);
             SolutionNumberInstance.numberB = Random.Range(0, 20);
-            SolutionNumberInstance.solutionNumber = SolutionNumberInstance.numberA + SolutionNumberInstance.numberB;
+
+            int determineOperation = Random.Range(0, 3);
+            SolutionNumberInstance.operation = determineOperation;
+
+            switch (determineOperation)
+            {
+                case 0:
+                    SolutionNumberInstance.solutionNumber = SolutionNumberInstance.numberA + SolutionNumberInstance.numberB;
+                    break;
+
+                case 1:
+                    SolutionNumberInstance.solutionNumber = SolutionNumberInstance.numberA - SolutionNumberInstance.numberB;
+                    break;
+
+                case 2:
+                    SolutionNumberInstance.solutionNumber = SolutionNumberInstance.numberA * SolutionNumberInstance.numberB;
+                    break;
+
+                case 3:
+                    SolutionNumberInstance.solutionNumber = SolutionNumberInstance.numberA / SolutionNumberInstance.numberB;
+                    break;
+            }
+
             Debug.Log($"The NEW soloution number is: {soloutionNumber}");
+        }
+        else
+        {
+            // Manage player lives - destroy hearts if the player gets answers wrong
+            if (playerLives.Equals(3))
+            {
+                Destroy(GameObject.Find("Heart_3"));
+                playerLives--;
+            }
+            else if (playerLives.Equals(2))
+            {
+                Destroy(GameObject.Find("Heart_2"));
+                playerLives--;
+            }
+            else if (playerLives.Equals(1))
+            {
+                Destroy(GameObject.Find("Heart_1"));
+                playerLives--;
+            }
+            else
+            {
+                Debug.Log("Player is out of lives.");
+                SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+            }
         }
     }
 }
