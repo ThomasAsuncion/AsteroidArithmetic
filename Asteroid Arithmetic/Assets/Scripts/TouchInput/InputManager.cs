@@ -70,7 +70,6 @@ public class InputManager : MonoBehaviourSingleton<InputManager>
         // Subscribes to event when we press down on the screen
         touchControls.Touch.TouchPress.started += context => StartTouch(context);
         touchControls.Touch.TouchPress.canceled += context => EndTouch(context);
-
     }
 
     /// <summary>
